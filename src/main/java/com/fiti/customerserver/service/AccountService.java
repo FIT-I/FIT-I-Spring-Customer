@@ -57,4 +57,7 @@ public class AccountService {
         }
     }
 
+    public Boolean emailDuplicateCheck(String email) {
+        return customerRepository.existsByEmail(email);
+    }
 }
