@@ -1,5 +1,7 @@
 package com.fiti.customerserver.config;
 
+import com.fiti.customerserver.jwt.JwtAuthenticationFilter;
+import com.fiti.customerserver.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +28,7 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -34,7 +37,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .shouldFilterAllDispatcherTypes(false)
                         .requestMatchers(AUTH_WHITELIST).permitAll()
-                        .anyRequest().authenticated());
+                        .anyRequest().authenticated()
+                        .and().addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
+                                UsernamePasswordAuthenticationFilter.class));
         return http.build();
     }
 

@@ -12,8 +12,10 @@ public enum ErrorCode {
     /*공통 2000*/
     INVALID_INPUT(false, 2000, "잘못된 입력값입니다."),
 
-    /*유저 3000*/
-    ACCOUNT_NOT_FOUND(false, 3001, "사용자를 찾을 수 없습니다."),
+    /*유저 인증 3000*/
+    ACCOUNT_NOT_FOUND(false, 3000, "사용자를 찾을 수 없습니다."),
+    INVALID_JWT_TOKEN(false, 3001, "유효하지 않은 토큰입니다."),
+    EXPIRED_JWT_TOKEN(false, 3002, "만료된 토큰입니다."),
 
     /*서버, DB 4000*/
     DATABASE_ERROR(false, 4000, "DB에 문제가 발생했습니다.");
