@@ -4,11 +4,14 @@ import com.fiti.customerserver.domain.matching.MatchingOrder;
 import com.fiti.customerserver.domain.matching.Wish;
 import com.fiti.customerserver.domain.redbell.Redbell;
 import com.fiti.customerserver.domain.review.Review;
+import com.fiti.customerserver.domain.user.enums.Role;
+import com.fiti.customerserver.domain.user.enums.UserState;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@SuperBuilder
 public class Customer extends User {
 
     @Id
@@ -41,4 +45,10 @@ public class Customer extends User {
 
     @OneToMany(mappedBy="customer", fetch = FetchType.LAZY)
     private List<Redbell> redbellList = new ArrayList<>();
+
+    public static Customer join(String email, String password, String name){
+        return Customer.builder().email(email).password(password).name(name)
+                .role(Role.CUSTOMER).state(UserState.ACTIVE)
+                .location("not-set").alarmState("off").build();
+    }
 }

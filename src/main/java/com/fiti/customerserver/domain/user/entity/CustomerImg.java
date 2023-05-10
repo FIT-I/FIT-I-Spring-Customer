@@ -2,6 +2,7 @@ package com.fiti.customerserver.domain.user.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 
 @Builder
@@ -20,5 +21,6 @@ public class CustomerImg {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    @ColumnDefault("'default.jpg'")
     private String customerProfileImgUrl;
 }
