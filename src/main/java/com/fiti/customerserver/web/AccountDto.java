@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 
 public class AccountDto {
 
+    private AccountDto(){}
+
     @Schema(title = "트레이너 회원가입")
     @Getter
     @NoArgsConstructor
