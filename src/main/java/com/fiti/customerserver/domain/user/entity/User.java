@@ -10,7 +10,6 @@ import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import org.hibernate.annotations.ColumnDefault;
 
 @Getter
 @MappedSuperclass
@@ -28,9 +27,9 @@ public class User extends BaseTimeEntity {
 
     private String name;
 
+    @Enumerated(EnumType.STRING)
     private UserState state;
 
-    @ColumnDefault("'off'")
     private String alarmState;
 
     private String location;
