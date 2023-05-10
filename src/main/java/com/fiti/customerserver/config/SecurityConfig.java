@@ -20,7 +20,7 @@ public class SecurityConfig {
 
     private static final String[] AUTH_WHITELIST = {
             "/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**",
-            "/", "/api/accounts/join", "/api/accounts/login"
+            "/", "/api/accounts/join", "/api/accounts/login", "/api/accounts/email-duplicate/{email}"
     };
 
     @Bean

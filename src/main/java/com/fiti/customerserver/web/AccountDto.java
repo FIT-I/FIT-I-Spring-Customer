@@ -33,6 +33,14 @@ public class AccountDto {
         private String name;
     }
 
+    @Schema(title = "이메일 중복 체크 결과")
+    @Getter
+    @AllArgsConstructor
+    public static class EmailDuplicateCheck{
+        @Schema(description = "이메일 중복 체크 결과 true -> 중복, false -> 중복x ", example = "true")
+        private boolean duplicated;
+    }
+
     @Schema(title = "로그인")
     @NoArgsConstructor
     @Getter
